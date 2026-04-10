@@ -1,6 +1,6 @@
 # Visage PACS image linking
 
-## Regex Pattern Documentation
+## Functionality
 
 Enables hyperlinked images to automatically display prior exam references from Visage repots. For example, here:
 
@@ -12,7 +12,9 @@ To enable, the user navigates in Visage to File → Preferences → Properties, 
 
 In the regular expressions (regex) patterns below, `$SERIES` represents a placeholder for the matched series number (typically `\d+`).
 
+
 ---
+## Regex Pattern Documentation
 
 ### Pattern 1
 
