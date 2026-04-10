@@ -12,12 +12,14 @@ To enable links, the user navigates in Visage to File → Preferences → Proper
 
 ![settingspng](images/settings.png)
 
-In the regular expressions (regex) patterns below, `$SERIES` represents a placeholder for the matched series number (typically `\d+`).
 
 
 ---
 ## Regex Pattern Documentation
 **Text below is for documentation purposes and is NOT needed for normal users.** No need to keep reading unless you want to figure out how it does what it does, or you want to contribute to improvements. 
+
+In the regular expressions (regex) patterns below, `$SERIES` represents a placeholder for the matched series number (typically `\d+`).
+
 
 ### Pattern 1
 
