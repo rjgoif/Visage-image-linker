@@ -6,7 +6,9 @@ Enables hyperlinked images to automatically display prior exam references from V
 
 ![examplepng](images/example.png)
 
-To enable, the user navigates in Visage to File → Preferences → Properties, then searches for Link. They then enable "Insert image links into reports" by checking "On", then pasting the regex pattern contained in this repo `regex-pattern.txt` into the "Image link patterns for reports". After restarting Visage, the links will appear in prior reports. 
+## How to install
+
+To enable links, the user navigates in Visage to File → Preferences → Properties, then searches for Link. They then enable "Insert image links into reports" by checking "On", then pasting the regex pattern contained here: `regex-pattern.txt` (the link to that text file is right above these instructions!) into the "Image link patterns for reports". After restarting Visage, the links will appear in prior reports. 
 
 ![settingspng](images/settings.png)
 
@@ -15,6 +17,7 @@ In the regular expressions (regex) patterns below, `$SERIES` represents a placeh
 
 ---
 ## Regex Pattern Documentation
+**Text below is for documentation purposes and is NOT needed for normal users.** No need to keep reading unless you want to figure out how it does what it does, or you want to contribute to improvements. 
 
 ### Pattern 1
 
