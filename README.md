@@ -2,7 +2,7 @@
 
 ## Functionality
 
-Enables hyperlinked images to automatically display prior exam references from Visage repots. For example, here:
+Enables hyperlinked images in prior Visage reports that jump to series and image number annotations. For example, here:
 
 ![examplepng](images/example.png)
 
