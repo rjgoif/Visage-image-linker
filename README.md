@@ -8,7 +8,12 @@ Enables hyperlinked images in prior Visage reports that jump to series and image
 
 ## How to install
 
-To enable links, the user navigates in Visage to File → Preferences → Properties, then searches for Link. They then enable "Insert image links into reports" by checking "On". Next, click "Image link patterns for reports" and click the `...` at the end of the line. On this page (right above these instructions) click `regex-pattern.txt` and copy the code in that file, then paste it in the Visage text box that appeared when `...` was clicked.
+To enable links, the user navigates in Visage to File → Preferences → Properties, then searches for Link. They then enable "Insert image links into reports" by checking "On". Next, click "Image link patterns for reports" and click the `...` at the end of the line. 
+
+**On this page** (right above these instructions) click `regex-pattern.txt` and copy the code in that file:
+<img width="921" height="228" alt="image" src="https://github.com/user-attachments/assets/6f3b6a22-4c26-4fca-b8c5-46cfb5181df4" />
+
+Then paste it in the Visage text box that appeared when `...` was clicked.
 
 Changes should be immediate. If not, close and reopen the exam and the links will appear in prior report.
 
