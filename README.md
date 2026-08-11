@@ -8,7 +8,7 @@ Enables hyperlinked images in prior Visage reports that jump to series and image
 
 ## How to install
 
-To enable links, the user navigates in Visage to File → Preferences → Properties, then searches for Link. They then enable "Insert image links into reports" by checking "On". Next, click "Image link patterns for reports" and click the `...` at the end of the line. 
+To enable links, navigate in Visage to File → Preferences → Properties, then search for "Link" in the text box (upper left corner). Then enable "Insert image links into reports" by checking "On". Next, click "Image link patterns for reports" and click the `...` at the end of the line. 
 
 <img width="956" height="285" alt="image" src="https://github.com/user-attachments/assets/3c2df854-975d-4f1e-b65a-93f2f5827bce" />
 
