@@ -90,26 +90,26 @@ The reverse of Pattern 1 — series number comes **first**, followed by image nu
 ### Pattern 4
 
 ```
-\(\s*$SERIES\s*[,;\.]\s*(?!0+\*?(?!\d))\d+\*?\s*\)
+[\(\[]\s*$SERIES\s*[,;\.]\s*(?!0+\*?(?!\d))\d+\*?\s*[\)\]]
 ```
 
-**Format:** `series comma/semicolon/period image`, enclosed in parentheses
+**Format:** `series comma/semicolon/period image`, enclosed in parentheses or square brackets
 
-Captures compact parenthesized annotations where a single series and image number are paired with a non-colon delimiter.
+Captures compact annotations in parentheses or square brackets where a single series and image number are paired with a non-colon delimiter. The opening and closing characters are matched independently, so mismatched pairs such as `(3, 47]` are also accepted.
 
 **Exclusion:** Rejects image numbers that are zero or pure-zero strings via a negative lookahead — `0`, `00`, etc. are excluded unless followed by additional nonzero digits, so `10` or `100` are accepted while bare `0` or `00` are not.
 
-**Example matches:** `(3, 47)`, `(3; 47)`, `(3.47)` **Excluded:** `(3, 0)`, `(3, 00*)`
+**Example matches:** `(3, 47)`, `(3; 47)`, `(3.47)`, `[3, 47]`, `[3; 47]` **Excluded:** `(3, 0)`, `(3, 00*)`
 
 ---
 
 ### Pattern 5
 
 ```
-\(?\s*(?<!\d)(?<!date-lookbehinds...)(?<!:)(?<!:\d)$SERIES\s*:\s*(?!0+\*?(?!\d))\d+\*?(\s*,\s*(?!\d+\s*:)(?!0+\*?(?!\d))\d+\*?)*(\s*(,)?\s*and\s+(?!\d+\s*:)(?!0+\*?(?!\d))\d+\*?)?\s*\)?(?!\d*\s*(on\s*)?\d+/\d+/\d+)(?!\d*\s*(?:AM|PM|am|pm|:|\.\d)\b)
+[\(\[]?\s*(?<!\d)(?<!date-lookbehinds...)(?<!:)(?<!:\d)$SERIES\s*:\s*(?!0+\*?(?!\d))\d+\*?(\s*,\s*(?!\d+\s*:)(?!0+\*?(?!\d))\d+\*?)*(\s*(,)?\s*and\s+(?!\d+\s*:)(?!0+\*?(?!\d))\d+\*?)?\s*[\)\]]?(?!\d*\s*(on\s*)?\d+/\d+/\d+)(?!\d*\s*(?:AM|PM|am|pm|:|\.\d)\b)
 ```
 
-**Format:** `series colon image [, image...]`, optionally enclosed in parentheses
+**Format:** `series colon image [, image...]`, optionally enclosed in parentheses or square brackets
 
 This is the most complex pattern. It captures the primary **`series:image`** colon-notation format widely used at MGH and BWH, including comma-separated or "and"-terminated image lists.
 
@@ -136,18 +136,18 @@ The long block of `(?<!...)` assertions prevents matching when the series number
 - A trailing date in M/D/YYYY format is rejected — e.g., `seen on 1/5/2024`
 - Trailing time indicators are rejected — `AM`, `PM`, a colon, or a decimal digit — preventing clock times from being parsed as image numbers
 
-**Example matches:** `3:47`, `3:12, 47, and 88`, parenthesized `(3:47)` **Excluded:** `1/5/2024 3:47`, `2024-Jan-5 3:47`, `3:00 AM`, series numbers already preceded by a colon
+**Example matches:** `3:47`, `3:12, 47, and 88`, parenthesized `(3:47)`, bracketed `[3:47]` **Excluded:** `1/5/2024 3:47`, `2024-Jan-5 3:47`, `3:00 AM`, series numbers already preceded by a colon
 
 ---
 
 ### Pattern 6
 
 ```
-\(?\s*(?<!\d)(?<!date-lookbehinds...)(?<!:)(?<!:\d)$SERIES\s*:\s*(?!0+\*?(?!\d))\d+\*?(\s*through\s*|\s+and\s+|\s*-\s*)(?!0+\*?(?!\d))\d+\*?\s*\)?(?!\d*\s*(?:AM|PM|am|pm|:|\.\d)\b)
+[\(\[]?\s*(?<!\d)(?<!date-lookbehinds...)(?<!:)(?<!:\d)$SERIES\s*:\s*(?!0+\*?(?!\d))\d+\*?(\s*through\s*|\s+and\s+|\s*-\s*)(?!0+\*?(?!\d))\d+\*?\s*[\)\]]?(?!\d*\s*(?:AM|PM|am|pm|:|\.\d)\b)
 ```
 
-**Format:** `series colon image through/and/- image`, optionally enclosed in parentheses
+**Format:** `series colon image through/and/- image`, optionally enclosed in parentheses or square brackets
 
 Identical to Pattern 5 in its lookbehind and lookahead exclusion machinery, but handles **image ranges** rather than comma lists — mirroring the relationship between Patterns 1 and 2. Accepts `through`, `and`, or `-` as the range connector. The same full set of date and time exclusions from Pattern 5 applies here as well.
 
-**Example matches:** `3:12 through 88`, parenthesized `(3:12-88)`, `3:12 and 88` **Excluded:** Same date and time contexts as Pattern 5
+**Example matches:** `3:12 through 88`, parenthesized `(3:12-88)`, bracketed `[3:12-88]`, `3:12 and 88` **Excluded:** Same date and time contexts as Pattern 5
